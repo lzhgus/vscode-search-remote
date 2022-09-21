@@ -1,0 +1,102 @@
+{
+	"name": "search-remote",
+	"displayName": "Search Remote",
+	"description": "Extension for search for selected text in the remote providers",
+	"version": "0.0.1",
+	"publisher": "zhihaoli",
+	"author": {
+		"name": "Zhihao Li"
+	},
+	"engines": {
+		"vscode": "^1.71.0"
+	},
+	"icon": "resources/icon.png",
+	"homepage": "https://github.com/lzhgus/vscode-search-remote.git",
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:search-remote.search"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"menus": {
+			"editor/context": [
+				{
+					"when": "editorHasSelection",
+					"command": "search-remote.search",
+					"group": "navigation"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "search-remote.search",
+				"title": "Search Remote"
+			}
+		],
+		"configuration": {
+			"title": "search-remote",
+			"type": "object",
+			"properties": {
+				"search-remote.noInputBoxIfTextSelected": {
+					"title": "No input box if text is selected",
+					"type": "boolean",
+					"description": "If this is 'true' no input box will appear if selected text is searched. Default org will be applied.",
+					"default": false
+				},
+				"search-remote.defaultProvider": {
+					"title": "Default search provider",
+					"type": "string",
+					"description": "Default search provider is Azure Repos",
+					"default": "azure"
+				},
+				"search-remote.defaultOrgName": {
+					"title": "Default azure org name",
+					"type": "string",
+					"description": "Default org name is Azure Repos",
+					"default": ""
+				},
+				"search-remote.useDefaultProviderOnly": {
+					"title": "Use default search provider only.",
+					"type": "boolean",
+					"description": "If true, only use the default search provider.",
+					"default": true
+				},
+				"search-remote.ProviderMapping": {
+					"title": "Search providers",
+					"type": "object",
+					"description": "the default search provider definitely is Azure Repos",
+					"default": {
+						"azure": "https://{orgName}.visualstudio.com/_search?action=contents&text={query}&type=code&lp=custom-Collection&filters=&pageSize=25",
+						"google": "https://www.google.com/search?q={query}"
+					}
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"lint": "eslint src --ext ts",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.71.0",
+		"@types/glob": "^7.2.0",
+		"@types/mocha": "^9.1.1",
+		"@types/node": "16.x",
+		"@typescript-eslint/eslint-plugin": "^5.31.0",
+		"@typescript-eslint/parser": "^5.31.0",
+		"eslint": "^8.20.0",
+		"glob": "^8.0.3",
+		"mocha": "^10.0.0",
+		"typescript": "^4.7.4",
+		"@vscode/test-electron": "^2.1.5"
+	},
+	"dependencies": {
+		"open": "0.0.5"
+	}
+}
