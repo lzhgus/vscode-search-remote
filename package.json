@@ -3,7 +3,7 @@
 	"displayName": "Search Remote",
 	"description": "Extension for search for selected text in the remote providers",
 	"version": "0.0.1",
-	"publisher": "zhihaoli",
+	"publisher": "zhihaoli23",
 	"author": {
 		"name": "Zhihao Li"
 	},
@@ -12,6 +12,10 @@
 	},
 	"icon": "resources/icon.png",
 	"homepage": "https://github.com/lzhgus/vscode-search-remote.git",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lzhgus/vscode-search-remote.git"
+	},
 	"categories": [
 		"Other"
 	],
