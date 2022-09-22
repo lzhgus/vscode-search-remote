@@ -51,7 +51,7 @@ function searchHelper(provider: string | undefined) {
 	});
 	let config = vscode.workspace.getConfiguration("search-remote");
 	let defaultOrgName = config.get<string>("defaultOrgName");
-	if (provider?.toLowerCase() === "Azure") {
+	if (provider === "Azure") {
 		selectedProvider = provider;
 		if (
 			config.get("noInputBoxIfTextSelected") &&
