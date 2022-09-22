@@ -53,7 +53,7 @@
 					"title": "Default search provider",
 					"type": "string",
 					"description": "Default search provider is Azure Repos",
-					"default": "azure"
+					"default": "Azure"
 				},
 				"search-remote.defaultOrgName": {
 					"title": "Default azure org name",
@@ -65,15 +65,18 @@
 					"title": "Use default search provider only.",
 					"type": "boolean",
 					"description": "If true, only use the default search provider.",
-					"default": true
+					"default": false
 				},
 				"search-remote.ProviderMapping": {
 					"title": "Search providers",
 					"type": "object",
 					"description": "the default search provider definitely is Azure Repos",
 					"default": {
-						"azure": "https://{orgName}.visualstudio.com/_search?action=contents&text={query}&type=code&lp=custom-Collection&filters=&pageSize=25",
-						"google": "https://www.google.com/search?q={query}"
+						"Azure": "https://{orgName}.visualstudio.com/_search?action=contents&text={query}&type=code&lp=custom-Collection&filters=&pageSize=25",
+						"Google": "https://www.google.com/search?q={query}",
+						"Bing": "https://www.bing.com/search?q={query}",
+						"StackOverflow": "http://stackoverflow.com/search?q={query}",
+						"Github": "https://github.com/search?q={query}"
 					}
 				}
 			}

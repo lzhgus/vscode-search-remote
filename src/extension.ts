@@ -29,7 +29,7 @@ function activate(context: any) {
 			if (useDefaultOnly) {
 				searchHelper(defaultProvider);
 			} else {
-				let providers = ["google", "azure"];
+				let providers = ["Azure", "Bing", "Google", "Github", "StackOverflow"];
 				let providerInput = vscode.window.showQuickPick(providers);
 				providerInput.then(searchFrom);
 			}
@@ -51,7 +51,7 @@ function searchHelper(provider: string | undefined) {
 	});
 	let config = vscode.workspace.getConfiguration("search-remote");
 	let defaultOrgName = config.get<string>("defaultOrgName");
-	if (provider?.toLowerCase() === "azure") {
+	if (provider?.toLowerCase() === "Azure") {
 		selectedProvider = provider;
 		if (
 			config.get("noInputBoxIfTextSelected") &&
@@ -102,7 +102,7 @@ function getSearchUrl(query: string | undefined): string {
 	if (!searchUrl) {
 		showConfigWarning("Invalid provider.");
 	}
-	if (selectedProvider === "azure") {
+	if (selectedProvider === "Azure") {
 		searchUrl = searchUrl.replace("{orgName}", orgName);
 		query = query?.replace(" ", "%20").replace(":", "%3A");
 	}
