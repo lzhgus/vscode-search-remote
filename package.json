@@ -2,7 +2,7 @@
 	"name": "search-remote",
 	"displayName": "Search Remote",
 	"description": "Extension for search for selected text in the remote providers",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"publisher": "zhihaoli23",
 	"author": {
 		"name": "Zhihao Li"
