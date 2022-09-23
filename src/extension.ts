@@ -27,6 +27,11 @@ function activate(context: any) {
 			let useDefaultOnly = config.get("useDefaultProviderOnly");
 			let defaultProvider = config.get<string>("defaultProvider");
 			if (useDefaultOnly) {
+				if (isNullOrEmpty(defaultProvider)) {
+					showConfigWarning("Invalid default provider.");
+					return;
+				}
+				selectedProvider = defaultProvider?.toLowerCase()!;
 				searchHelper(defaultProvider);
 			} else {
 				let providers = ["Azure", "Bing", "Google", "Github", "StackOverflow"];
@@ -51,11 +56,11 @@ function searchHelper(provider: string | undefined) {
 	});
 	let config = vscode.workspace.getConfiguration("search-remote");
 	let defaultOrgName = config.get<string>("defaultOrgName");
-	if (provider === "Azure") {
-		selectedProvider = provider;
+	if (provider.toLowerCase() === "azure") {
+		selectedProvider = provider.toLowerCase();
 		if (
 			config.get("noInputBoxIfTextSelected") &&
-			!(defaultOrgName === null || defaultOrgName === "")
+			!isNullOrEmpty(defaultOrgName)
 		) {
 			orgName = defaultOrgName!;
 			searchFor(selectedText);
@@ -71,7 +76,7 @@ function searchFrom(provider: string | undefined) {
 	if (!provider) {
 		return;
 	}
-	selectedProvider = provider;
+	selectedProvider = provider.toLowerCase();
 	searchHelper(selectedProvider);
 }
 
@@ -102,7 +107,7 @@ function getSearchUrl(query: string | undefined): string {
 	if (!searchUrl) {
 		showConfigWarning("Invalid provider.");
 	}
-	if (selectedProvider === "Azure") {
+	if (selectedProvider === "azure") {
 		searchUrl = searchUrl.replace("{orgName}", orgName);
 		query = query?.replace(" ", "%20").replace(":", "%3A");
 	}
@@ -147,4 +152,8 @@ function showConfigWarning(warning: string) {
 	).then((c) => {
 		if (c) vscode.commands.executeCommand(c.cmd);
 	});
+}
+
+function isNullOrEmpty(s: string | undefined): boolean {
+	return s === undefined || s === null || s === "" || s?.trim() === "";
 }

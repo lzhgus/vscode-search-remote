@@ -72,11 +72,11 @@
 					"type": "object",
 					"description": "the default search provider definitely is Azure Repos",
 					"default": {
-						"Azure": "https://{orgName}.visualstudio.com/_search?action=contents&text={query}&type=code&lp=custom-Collection&filters=&pageSize=25",
-						"Google": "https://www.google.com/search?q={query}",
-						"Bing": "https://www.bing.com/search?q={query}",
-						"StackOverflow": "http://stackoverflow.com/search?q={query}",
-						"Github": "https://github.com/search?q={query}"
+						"azure": "https://{orgName}.visualstudio.com/_search?action=contents&text={query}&type=code&lp=custom-Collection&filters=&pageSize=25",
+						"google": "https://www.google.com/search?q={query}",
+						"bing": "https://www.bing.com/search?q={query}",
+						"stackoverflow": "http://stackoverflow.com/search?q={query}",
+						"github": "https://github.com/search?q={query}"
 					}
 				}
 			}
